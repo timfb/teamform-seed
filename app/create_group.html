@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="createGroupApp">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <title>teamform - team page</title>
+	  
+      <!-- libraries and CSS 	  
+		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
+		Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
+		Font-awesome: More icons for the web development (v4.6.3 is used)		
+		site.css: A customized css for our web application. Not from any web framework. 
+	  -->
+	        
+      <script src="lib/jquery.min.js"></script>      
+      <script src="lib/bootstrap.min.js"></script>      
+      	  
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">     
+      <link rel="stylesheet" href="css/site.css" >
+
+
+      <!-- Customized libraries shared by pages -->
+      <script src="js/site.js"></script>
+	  	  
+   </head>
+   <body>
+        <div ng-controller = "createGroupCtrl">
+            <div>
+				<label>Name:</label>
+				<input  type="text" name="Team Name" ng-model="team.teamName"  required>
+            </div>
+            
+            
+			 <div class="row">
+				<strong>Preferred Team Size: </strong> 					  
+				<span>
+						 <span class="badge">
+                             {{team.currentTeamSize}}</span>						  
+						 <button><span class="glyphicon glyphicon-plus" ng-click="changeCurrentTeamSize(1);"></span></button>
+				         <button><span class="glyphicon glyphicon-minus" ng-click="changeCurrentTeamSize(-1);"></span></button>						  
+				</span>
+            </div>
+            
+            <div class="row">
+                <strong>Sex Limitation</strong>
+                    <span class="badge">
+                             {{team.sexLimitation}}</span>
+                    
+                    <button type="button" class="btn btn-primary" ng-click="selectSexLimitation('Male');">Male Only</button>
+                    <button type="button" class="btn btn-primary" ng-click="selectSexLimitation('Female');">Female Only</button>
+                    <button type="button" class="btn btn-primary" ng-click="selectSexLimitation('No Limitaiton');">No Limitation</button>          
+            </div>
+            
+            <div>
+				<label>age Upper Limitation:</label>
+				<input  type="text" name="Upper limit" ng-model="team.ageUpperLimitation"  required>
+            </div>
+            
+            <div>
+				<label>age Lower Limitation:</label>
+				<input  type="text" name="Lower limit" ng-model="team.ageLowerLimitation"  required>
+            </div>             
+            
+            //Bug Not Fix
+            <div>
+				<label>Nationality limitation:</label>
+				<input  type="text" name="Nationality" ng-model = "tempNationality" required>
+                <button type="button" class="btn btn-primary" ng-click="addNationalityLimitation();" >Add</button>
+            </div>            
+            
+            <div>
+                <button type="button" class="btn btn-primary" ng-click="createTeam();" >Add</button>
+            </div>
+       </div>
+    
+
+
+   <!-- JavaScript of this page -->
+
+   <!-- Angular and Angular-route libraries (v1.5.7) -->
+   <script src="lib/angular.min.js"></script>
+   <script src="lib/angular-route.min.js"></script>        
+     
+   <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+   <script src="lib/firebase.js"></script>     
+   <script src="lib/angularfire.min.js"></script>
+
+
+   <script src="js/create_group.js"></script>
+
+   </body>
+</html>
+
