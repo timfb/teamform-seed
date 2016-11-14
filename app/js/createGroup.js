@@ -27,13 +27,13 @@ app.controller("createGroupCtrl",
 		//id: "",
 		name: "",
 		max: 2,
-		//destination: "",
-		//departure_date: "",
+		destination: "",
+		departureDate: "",
 		//return_date: "",
 		preference: "N",
 		estimatedBudgetPerPerson: 100,
 		//descriptions: "",
-		//language_for_communication: "",
+		//languageForCommunication: "",
 		//members: [],
 		//tags: []
 	};	
@@ -94,6 +94,68 @@ app.controller("createGroupCtrl",
 		}
 
 	};
+
+	// set destination
+	$scope.setDestination = function(){
+		if($scope.tempTeam.destination == ""){
+			alert("Please choose one country as your destination.");
+			return;
+		};
+	};
+
+	// set departure date
+  
+  $(document).ready( function() {
+    $( "#date" ).datepicker();
+  } );
+  
+  	/****************************************************************************
+		1. make sure the choosen date will not before the today
+			- compare year
+				-if year < today year retunr
+				-if year > today year store
+				-if year == today year check month
+					-compare month
+						-if month < today month return
+						-if month > today month store
+						-if month == today month check day
+							-compare date
+								-if day <= today day return
+								-if day > today day store
+  	*****************************************************************************/
+    var testInVaildDate = function(selectedDate, todayDate){
+    	if(selectedDate >= todayDate){
+    		return false;
+    	}else if(selectedDate < todayDate){
+    		return true;
+    	}
+    };
+
+    $scope.setDepartureDate = function(){
+    	var today = new Date();
+    	var dd = today.getDay();
+    	var mm = today.getMonth() + 1;
+    	var yyyy = today.getFullYear();
+
+    	var partitionDate = $scope.tempTeam.departureDate.split("/");
+    	var intPartitionDate = [];
+    	for(var i = 0; i < 3; i++){
+    		intPartitionDate.push(parseInt(partitionDate[i]));
+    	}
+
+    	if(testInVaildDate(intPartitionDate[2], yyyy)){
+    		alert("Cannot choose a year in the past.");
+    		return;
+    	} else if(testInVaildDate(intPartitionDate[1], mm)){
+    		alert("Cannot choose a month in the past.");
+    		return;
+  	 	} else if((testInVaildDate(intPartitionDate[0] - 1), dd)){
+    		alert("Cannot choose a day in the past.");
+    		return;
+    	}
+
+
+    };
 
 	// add group into firebase
 	$scope.createGroup = function(teamName){

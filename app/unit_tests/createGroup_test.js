@@ -73,6 +73,37 @@ describe('createGroupCtrl', function(){
 		expect($scope.tempTeam.estimatedBudgetPerPerson).toEqual(100);		
 	});
 
+	it('setDestination requires user to select one destination', function(){
+		spyOn(window, 'alert');
+
+		$scope.tempTeam.destination = "";
+		$scope.setDestination();
+		expect(window.alert).toHaveBeenCalledWith("Please choose one country as your destination.");
+	});
+/*
+	it('check datepicker has been called', function(){
+		var jqueryFun = jQuery('#date');
+		spyOn(jqueryFun, 'datepicker');
+		$('#date').datepicker;
+		expect(jqueryFun.datepicker).toHaveBeenCalled();
+	});
+*/
+	it('setDepartureDate do not allow user set a date before the current date', function(){
+		spyOn(window, 'alert');
+
+		$scope.tempTeam.departureDate = "14/02/1995";
+		$scope.setDepartureDate();
+		expect(window.alert).toHaveBeenCalledWith("Cannot choose a year in the past.");
+
+		$scope.tempTeam.departureDate = "12/07/2016";
+		$scope.setDepartureDate();
+		expect(window.alert).toHaveBeenCalledWith("Cannot choose a month in the past.");
+
+		$scope.tempTeam.departureDate = "14/11/2016";
+		$scope.setDepartureDate();
+		expect(window.alert).toHaveBeenCalledWith("Cannot choose a day in the past.");
+	});
+
 	it('createGroup() create a right team object', function(){
 		expect($scope.team.id).toEqual("");
 	});
