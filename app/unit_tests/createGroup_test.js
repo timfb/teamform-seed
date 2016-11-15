@@ -4,10 +4,11 @@
 describe('createGroupCtrl', function(){
 	beforeEach(module('createGroupApp'));
 
-	var $scope, ctrl;
+	var $scope, ctrl, firebaseArray;
 
-	beforeEach(inject(function($controller){
+	beforeEach(inject(function($controller, $firebaseArray){
 		$scope = {};
+		firebaseArray = $firebaseArray;
 		ctrl = $controller('createGroupCtrl', {$scope: $scope});
 	}));
 
@@ -16,15 +17,15 @@ describe('createGroupCtrl', function(){
 
 		$scope.tempTeam.name = "";
 		$scope.setTeamName();
-		expect(window.alert).toHaveBeenCalledWith("Team name cannot be empty!");
+		expect(window.alert).toHaveBeenCalledWith("Team name: cannot be empty!");
 		
 		$scope.tempTeam.name = "w";		
 		$scope.setTeamName();
-		expect(window.alert).toHaveBeenCalledWith("Team name should be shorter than 3 words!");
+		expect(window.alert).toHaveBeenCalledWith("Team name: should be shorter than 3 words!");
 		
 		$scope.tempTeam.name = "0123456789012345678901234567890123456789012345678901";
 		$scope.setTeamName();
-		expect(window.alert).toHaveBeenCalledWith("Team name should not be longer than 50 words!");				
+		expect(window.alert).toHaveBeenCalledWith("Team name: should not be longer than 50 words!");				
 	});
 
 	it('setMaxTeamMember can only allow each group has 2 to 20 members', function(){
@@ -63,13 +64,13 @@ describe('createGroupCtrl', function(){
 
 		$scope.tempTeam.estimatedBudgetPerPerson = 50;
 		$scope.setEstimateBudgetPerPerson();
-		expect(window.alert).toHaveBeenCalledWith("Budget should not be less than $100.");
+		expect(window.alert).toHaveBeenCalledWith("Budget per groupmate: should not be less than $100.");
 		expect($scope.tempTeam.estimatedBudgetPerPerson).toEqual(100);
 
 
 		$scope.tempTeam.estimatedBudgetPerPerson = 10000000;
 		$scope.setEstimateBudgetPerPerson();
-		expect(window.alert).toHaveBeenCalledWith("Budget should not be larger than 100000.");
+		expect(window.alert).toHaveBeenCalledWith("Budget per groupmate: should not be larger than 100000.");
 		expect($scope.tempTeam.estimatedBudgetPerPerson).toEqual(100);		
 	});
 
@@ -78,8 +79,16 @@ describe('createGroupCtrl', function(){
 
 		$scope.tempTeam.destination = "";
 		$scope.setDestination();
-		expect(window.alert).toHaveBeenCalledWith("Please choose one country as your destination.");
+		expect(window.alert).toHaveBeenCalledWith("Destination: Please choose one country as your destination.");
 	});
+
+	it('setLanguage requires user to select one language', function(){
+		spyOn(window, 'alert');
+
+		$scope.tempTeam.languageForCommunication = "";
+		$scope.setLanguageForCommunication();
+		expect(window.alert).toHaveBeenCalledWith("Language: Please choose one language as your main communication language.");
+	});	
 /*
 	it('check datepicker has been called', function(){
 		var jqueryFun = jQuery('#date');
@@ -88,21 +97,71 @@ describe('createGroupCtrl', function(){
 		expect(jqueryFun.datepicker).toHaveBeenCalled();
 	});
 */
+
+
 	it('setDepartureDate do not allow user set a date before the current date', function(){
 		spyOn(window, 'alert');
 
-		$scope.tempTeam.departureDate = "14/02/1995";
+		$scope.tempTeam.departureDate = "";
 		$scope.setDepartureDate();
-		expect(window.alert).toHaveBeenCalledWith("Cannot choose a year in the past.");
+		expect(window.alert).toHaveBeenCalledWith("Departure date: Cannot be empty.");
 
-		$scope.tempTeam.departureDate = "12/07/2016";
+		$scope.tempTeam.departureDate = "11/02/1995";
 		$scope.setDepartureDate();
-		expect(window.alert).toHaveBeenCalledWith("Cannot choose a month in the past.");
+		expect(window.alert).toHaveBeenCalledWith("Departure date: Cannot choose a year in the past.");
 
-		$scope.tempTeam.departureDate = "14/11/2016";
+
+		$scope.tempTeam.departureDate = "10/11/2016";
 		$scope.setDepartureDate();
-		expect(window.alert).toHaveBeenCalledWith("Cannot choose a day in the past.");
+		expect(window.alert).toHaveBeenCalledWith("Departure date: Cannot choose a month in the past.");
+
+		$scope.tempTeam.departureDate = "11/15/2016";
+		$scope.setDepartureDate();
+		expect(window.alert).toHaveBeenCalledWith("Departure date: Cannot choose a day in the past.");
+
 	});
+/*
+	it('test', function(){
+		var changeDateFromStringToIntArray = function(dateString){
+	    	var partitionDate = dateString.split("/");
+	    	var intPartitionDate = [];
+	    	for(var i = 0; i < 3; i++){
+	    		intPartitionDate.push(parseInt(partitionDate[i]));
+	    	}
+	    	return intPartitionDate;
+	    };
+
+	    var test = changeDateFromStringToIntArray("11/16/2016");
+
+	    expect(test[0]).toEqual(11);
+	    expect(test[1]).toEqual(16);
+	    expect(test[2]).toEqual(2016);	    	    
+	});
+*/
+
+	it('setreturnDate do not allow user set a date before the departure date', function(){
+		spyOn(window, 'alert');
+
+		$scope.tempTeam.returnDate = "";
+		$scope.setReturnDate();
+		expect(window.alert).toHaveBeenCalledWith("Return date: Cannot be empty.");
+
+		$scope.tempTeam.departureDate = "14/02/1995";
+		$scope.tempTeam.returnDate = "14/02/1994";		
+		$scope.setReturnDate();
+		expect(window.alert).toHaveBeenCalledWith("Return date: Cannot choose a year in the past.");
+
+		$scope.tempTeam.departureDate = "11/12/2016";
+		$scope.tempTeam.returnDate = "10/12/2016";			
+		$scope.setReturnDate();
+		expect(window.alert).toHaveBeenCalledWith("Return date: Cannot choose a month in the past.");
+
+		$scope.tempTeam.departureDate = "11/16/2016";
+		$scope.tempTeam.returnDate = "11/16/2016";		
+		$scope.setReturnDate();
+		expect(window.alert).toHaveBeenCalledWith("Return date: Cannot choose a day in the past.");
+
+	});	
 
 	it('createGroup() create a right team object', function(){
 		expect($scope.team.id).toEqual("");
