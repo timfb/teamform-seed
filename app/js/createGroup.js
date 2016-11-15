@@ -5,8 +5,8 @@ app.controller("createGroupCtrl",
 	//init Firebase
 	//initalizeFirebase();
 
-	//var ref = firebase.database().ref('created_group');
-	//var teamList = $firebaseArray(ref);
+    var ref = firebase.database().ref('createGroup');
+    $scope.allTeam = $firebaseArray(ref);
 
 	$scope.team = {
 		id: "",
@@ -29,11 +29,11 @@ app.controller("createGroupCtrl",
 		max: 2,
 		destination: "",
 		departureDate: "",
-		//return_date: "",
+		returnDate: "",
 		preference: "N",
 		estimatedBudgetPerPerson: 100,
 		//descriptions: "",
-		//languageForCommunication: "",
+		languageForCommunication: "",
 		//members: [],
 		//tags: []
 	};	
@@ -46,17 +46,17 @@ app.controller("createGroupCtrl",
 	************************************************************************/
 	$scope.setTeamName = function(){
 		if($scope.tempTeam.name == ""){
-			alert("Team name cannot be empty!");
-			return;
+			alert("Team name: cannot be empty!");
+			return false;
 		}else if($scope.tempTeam.name.length < 3){
-			alert("Team name should be shorter than 3 words!");
-			return;
+			alert("Team name: should be shorter than 3 words!");
+			return false;
 		}else if($scope.tempTeam.name.length > 50){
-			alert("Team name should not be longer than 50 words!");
-			return;
+			alert("Team name: should not be longer than 50 words!");
+			return false;
 		}
 
-		
+    	return true;		
 	};
 
 	// set maximun number of team member
@@ -85,30 +85,42 @@ app.controller("createGroupCtrl",
 	$scope.setEstimateBudgetPerPerson = function(){
 		if($scope.tempTeam.estimatedBudgetPerPerson < 100){
 			$scope.tempTeam.estimatedBudgetPerPerson = 100;
-			alert("Budget should not be less than $100.");
-			return;
+			alert("Budget per groupmate: should not be less than $100.");
+			return false;
 		} else if($scope.tempTeam.estimatedBudgetPerPerson > 100000){
 			$scope.tempTeam.estimatedBudgetPerPerson = 100;			
-			alert("Budget should not be larger than 100000.");
-			return;
+			alert("Budget per groupmate: should not be larger than 100000.");
+			return false;
 		}
 
+    	return true;		
 	};
 
 	// set destination
 	$scope.setDestination = function(){
 		if($scope.tempTeam.destination == ""){
-			alert("Please choose one country as your destination.");
-			return;
+			alert("Destination: Please choose one country as your destination.");
+			return false;
 		};
+
+    	return true;		
 	};
 
-	// set departure date
-  
+	// set main language for communication
+	$scope.setLanguageForCommunication = function(){
+		if($scope.tempTeam.languageForCommunication == ""){
+			alert("Language: Please choose one language as your main communication language.");
+			return false;
+		};
+
+    	return true;		
+	};	
+
+	// set departure date 
   $(document).ready( function() {
-    $( "#date" ).datepicker();
+    $( "#departureDate" ).datepicker();
   } );
-  
+ 
   	/****************************************************************************
 		1. make sure the choosen date will not before the today
 			- compare year
@@ -133,7 +145,7 @@ app.controller("createGroupCtrl",
 
     $scope.setDepartureDate = function(){
     	var today = new Date();
-    	var dd = today.getDay();
+    	var dd = today.getDate();
     	var mm = today.getMonth() + 1;
     	var yyyy = today.getFullYear();
 
@@ -143,23 +155,69 @@ app.controller("createGroupCtrl",
     		intPartitionDate.push(parseInt(partitionDate[i]));
     	}
 
-    	if(testInVaildDate(intPartitionDate[2], yyyy)){
-    		alert("Cannot choose a year in the past.");
-    		return;
-    	} else if(testInVaildDate(intPartitionDate[1], mm)){
-    		alert("Cannot choose a month in the past.");
-    		return;
-  	 	} else if((testInVaildDate(intPartitionDate[0] - 1), dd)){
-    		alert("Cannot choose a day in the past.");
-    		return;
+    	if($scope.tempTeam.departureDate == ""){
+    		alert("Departure date: Cannot be empty.");
+    		return false;
+    	} else if(testInVaildDate(intPartitionDate[2], yyyy)){
+    		alert("Departure date: Cannot choose a year in the past.");
+    		return false;
+    	} else if(testInVaildDate(intPartitionDate[0], mm)){
+    		alert("Departure date: Cannot choose a month in the past.");
+    		return false;
+  	 	} else if(testInVaildDate((intPartitionDate[1] - 1), dd)){
+    		alert("Departure date: Cannot choose a day in the past.");
+    		return false;
     	}
 
-
+    	return true;
     };
 
+    //set return date
+  $(document).ready( function() {
+    $( "#returnDate" ).datepicker();
+  } );
+
+    //Change date from string to int array
+    var changeDateFromStringToIntArray = function(dateString){
+    	var partitionDate = dateString.split("/");
+    	var intPartitionDate = [];
+    	for(var i = 0; i < 3; i++){
+    		intPartitionDate.push(parseInt(partitionDate[i]));
+    	}
+    	return intPartitionDate;
+    };
+
+    $scope.setReturnDate = function(){
+    	var departureDateArray = changeDateFromStringToIntArray($scope.tempTeam.departureDate);
+    	var returnDateArray = changeDateFromStringToIntArray($scope.tempTeam.returnDate);
+
+
+    	if($scope.tempTeam.returnDate == ""){
+    		alert("Return date: Cannot be empty.");
+    		return false;
+    	} else if(testInVaildDate(returnDateArray[2], departureDateArray[2])){
+    		alert("Return date: Cannot choose a year in the past.");
+    		return false;
+    	} else if(testInVaildDate(returnDateArray[0], departureDateArray[0])){
+    		alert("Return date: Cannot choose a month in the past.");
+    		return false; 
+  	 	} else if(testInVaildDate((returnDateArray[1] - 1), departureDateArray[1])){
+    		alert("Return date: Cannot choose a day in the past.");
+    		return false;
+    	}
+
+    	return true;
+    };    
+
 	// add group into firebase
-	$scope.createGroup = function(teamName){
-		//$scope.setTeamName
+	$scope.createGroup = function(){
+		if($scope.setTeamName() && $scope.setEstimateBudgetPerPerson() && $scope.setDestination() &&
+		$scope.setLanguageForCommunication() && $scope.setDepartureDate() && $scope.setReturnDate() ){
+			$scope.allTeam.$add($scope.tempTeam);
+		} else {
+			alert("Please enter the information again.");
+		}
+
 	};
 
 });
