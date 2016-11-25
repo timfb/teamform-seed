@@ -1,6 +1,6 @@
 'use strict'
 //spyOn function: http://www.htmlgoodies.com/html5/javascript/spy-on-javascript-methods-using-the-jasmine-testing-framework.html#fbid=ds1Vg7qMWpD
-
+/*
 describe('createGroupCtrl', function(){
 	beforeEach(module('createGroupApp'));
 
@@ -103,6 +103,7 @@ describe('createGroupCtrl', function(){
 		$scope.tempTeam.languageForCommunication = "AG";
 		expect($scope.setLanguageForCommunication()).toBe(true);
 	});	
+*/
 /*
 	it('check datepicker has been called', function(){
 		var jqueryFun = jQuery('#date');
@@ -164,7 +165,10 @@ describe('createGroupCtrl', function(){
 		expect($scope.setReturnDate()).toBe(true);		
 	});	
 */
+/*
 	it('createGroup() create a right team object', function(){
 		
 	});
+
 });
+*/
