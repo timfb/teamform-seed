@@ -1,0 +1,91 @@
+/*#loginDialog{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginDialog-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#loginDialog-content .message{
+    font-size: small;
+    padding-bottom: 20px;
+}
+
+#loginDialog-content .button-group{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+#loginDialog-content .button-group input[type="button"]{
+    flex-basis: 40%;
+}*/
+
+body{
+    background-image: url("https://images.designtrends.com/wp-content/uploads/2016/04/04070921/Travel-Wallpaper-Background.png");
+    background-size: cover;
+}
+
+.createGroup{
+    width: 80%;
+    height: middle;
+    padding-top: 70px;
+    padding-right: 80px;
+    padding-bottom: 100px;
+    padding-left: 200px;
+    margin: 10%;
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    font-style: oblique;
+    size: 8;
+
+}
+
+.createGroup tr{
+    height: 35px;
+}
+
+input[type=text], select {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
