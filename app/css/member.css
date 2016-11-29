@@ -2,12 +2,12 @@
 	    body {
 	        background: #76b852;
 	        /* fallback for old browsers */
-	        
+
 	        background: -webkit-linear-gradient(right, #76b852, #8DC26F);
 	        background: -moz-linear-gradient(right, #76b852, #8DC26F);
 	        background: -o-linear-gradient(right, #76b852, #8DC26F);
 	        background: linear-gradient(to left, #76b852, #8DC26F);
-	        background-image: url("http://www.hdbloggers.net/wp-content/uploads/2016/03/Sunset-Background.jpg");
+	        background-image: url("http://blog.ecocompanion.com/wp-content/uploads/2015/10/shutterstock_204205822-1600x900.jpg");
 	        background-size: cover;
 	        font-family: "Roboto", sans-serif;
 	        -webkit-font-smoothing: antialiased;
@@ -40,7 +40,13 @@
 	        -webkit-border-radius: 15px;
 	        -moz-border-radius: 15px;
 	        border-radius: 15px;
-	    }
+
+  		}
+
 	    span {
 	        font-size: x-large;
 	    }
+
+	.text-center{
+		color: white;
+			}
