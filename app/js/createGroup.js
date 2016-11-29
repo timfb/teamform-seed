@@ -121,13 +121,13 @@ app.controller("createGroupCtrl",
           
             if ($scope.tempTeam.max > 20 ) {
                 alert("Our website can only form a group with not more than 20 members.");
-                return;
+                return false;
             } else if ($scope.tempTeam.max < 2 ) {
                 alert("Our website can only form a group with more than 2 members");
-                return;
+                return false;
             }
 
-            $scope.tempTeam.max += change;
+            return true;
         };
 
         // set sex perference: M = Male, F = Female, N = No perference
@@ -341,7 +341,7 @@ app.controller("createGroupCtrl",
                 return;
             }
 
-            if ($scope.setTeamName() && $scope.setMaxTeamMember() && $scope.setEstimateBudgetPerPerson() && $scope.setDestination() &&
+            if ($scope.setTeamName() && $scope.setMaxTeamMember() && $scope.setEstimateBudgetPerPerson() && $scope.setDestination() && 
                 $scope.setLanguageForCommunication() && $scope.setDepartureDate() && $scope.setReturnDate()) {
                 $scope.setId();
                 $scope.tempTeam.members.push($scope.userID);
