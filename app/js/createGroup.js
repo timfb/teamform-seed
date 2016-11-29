@@ -117,12 +117,12 @@ app.controller("createGroupCtrl",
         };
 
         // set maximun number of team member
-        $scope.setMaxTeamMember = function (change) {
-            change = parseInt(change);
-            if ($scope.tempTeam.max == 20 && change == 1) {
+        $scope.setMaxTeamMember = function () {
+          
+            if ($scope.tempTeam.max > 20 ) {
                 alert("Our website can only form a group with not more than 20 members.");
                 return;
-            } else if ($scope.tempTeam.max == 2 && change == -1) {
+            } else if ($scope.tempTeam.max < 2 ) {
                 alert("Our website can only form a group with more than 2 members");
                 return;
             }
@@ -341,7 +341,7 @@ app.controller("createGroupCtrl",
                 return;
             }
 
-            if ($scope.setTeamName() && $scope.setEstimateBudgetPerPerson() && $scope.setDestination() &&
+            if ($scope.setTeamName() && $scope.setMaxTeamMember() && $scope.setEstimateBudgetPerPerson() && $scope.setDestination() &&
                 $scope.setLanguageForCommunication() && $scope.setDepartureDate() && $scope.setReturnDate()) {
                 $scope.setId();
                 $scope.tempTeam.members.push($scope.userID);
