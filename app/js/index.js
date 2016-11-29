@@ -97,7 +97,7 @@ app.controller("LoginController",
 app.controller("RegController",
     function($scope, $firebaseArray) {
         $scope.emailTextReg = "";
-        $scope.gender = 'male';
+        $scope.gender = 'Male';
         $scope.avali = true;
         $scope.nation = 'chinese';
         $scope.members = $firebaseArray(dbRef);
@@ -579,7 +579,6 @@ firebase.auth().onAuthStateChanged(stateChange);
 */
 
 function previewMethod(input) {
-
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
