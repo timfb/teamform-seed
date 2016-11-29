@@ -30,3 +30,47 @@
 #loginDialog-content .button-group input[type="button"]{
     flex-basis: 40%;
 }
+
+body{
+    background-image: url("http://exchange.wysetc.org/wp-content/uploads/sites/11/2016/03/Backpacker-Australia.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+div.param-container.well{
+    display: flex;
+    justify-content: center;
+    background: rgba(240,240,240,0.95);
+}
+
+div.param{
+    margin: 10px 0 ;
+}
+
+div.creatGroupButton{
+    margin-top: 20px;
+    border-top: #bbb solid 3px;
+}
+
+div.creatGroupButton button{
+    margin-top: 20px;
+}
+
+div.creatGroupButton-container{
+    width: 100%;
+    text-align: center;
+}
+
+span.member-added{
+    margin-left: 15px;
+    width: 100%;
+}
+
+span.debug{
+    display:none;
+}

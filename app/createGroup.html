@@ -24,7 +24,7 @@
 
 </head>
 
-<body>
+<body class="container">
 
     <div id="loginDialog" class="hide">
         <div id="loginDialog-content" class="well">
@@ -40,40 +40,44 @@
     </div>
     <div class="createGroup" ng-controller="createGroupCtrl">
 
-        <div class="teamName">
-            <strong>Team name:</strong>
-            <input type="text" ng-model="tempTeam.name" placeholder="Type in your team name">
-            <span class="debug">{{tempTeam.name}}</span>
-        </div>
+        <div class="well param-container">
+            <div class="params">
+                <div class="teamName param">
+                    <strong>Team name:</strong>
+                    <input type="text" ng-model="tempTeam.name" placeholder="Type in your team name">
+                    <span class="debug">{{tempTeam.name}}</span>
+                </div>
 
-        <div clasa="max">
-            <strong>Maximun number of groupmates</strong>
-            <span>
+                <div class="max param">
+                    <strong>Maximun number of groupmates</strong>
+                    <span>
                 <span class="badge">{{tempTeam.max}}</span>
-            <button ng-click="setMaxTeamMember(1);"><span class="glyphicon glyphicon-plus"></span></button>
-            <button ng-click="setMaxTeamMember(-1);"><span class="glyphicon glyphicon-minus"></span></button>
-            </span>
+                    <button ng-click="setMaxTeamMember(1);"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button ng-click="setMaxTeamMember(-1);"><span class="glyphicon glyphicon-minus"></span></button>
+                    </span>
 
-        </div>
+                </div>
 
-        <div class="sexPreference">
-            <strong>Sex Preference</strong>
-            <button type="button" class="btn btn-primary" ng-click="setSexPreference('M')" ;> Male only</button>
-            <button type="button" class="btn btn-primary" ng-click="setSexPreference('F')" ;> Female only</button>
-            <button type="button" class="btn btn-primary" ng-click="setSexPreference('N')" ;> No preference</button>
-            <span class="debug">{{tempTeam.preference}}</span>
-        </div>
+                <div class="sexPreference param">
+                    <strong>Sex Preference</strong>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger" ng-click="setSexPreference('M')" ;> Male only</button>
+                        <button type="button" class="btn btn-danger" ng-click="setSexPreference('F')" ;> Female only</button>
+                        <button type="button" class="btn btn-danger" ng-click="setSexPreference('N')" ;> No preference</button>
+                    </div>
+                    <span class="debug">{{tempTeam.preference}}</span>
+                </div>
 
-        <div class="budget">
-            <strong>Budget per groupmates</strong>
-            <input type="number" ng-model="tempTeam.estimatedBudgetPerPerson" placeholder="Budget in usd and must be larger than $100">
-            <span class="debug">{{tempTeam.estimatedBudgetPerPerson}}</span>
-        </div>
+                <div class="budget param">
+                    <strong>Budget per groupmates</strong>
+                    <input type="number" ng-model="tempTeam.estimatedBudgetPerPerson" placeholder="Budget in usd and must be larger than $100">
+                    <span class="debug">{{tempTeam.estimatedBudgetPerPerson}}</span>
+                </div>
 
 
-        <div class="Destination">
-            <strong>Destination</strong>
-            <select name="country" ng-model="tempTeam.destination">
+                <div class="Destination param">
+                    <strong>Destination</strong>
+                    <select name="country" ng-model="tempTeam.destination">
                 <option value ="">Country...</option>
                 <option>Afghanistan</option>
                 <option>Albania</option>
@@ -322,14 +326,14 @@
                 <option>Zaire</option>
                 <option>Zambia</option>
                 <option>Zimbabwe</option>
-            </select>
+                </select>
 
-            <span class="debug">{{tempTeam.destination}}</span>
-        </div>
+                    <span class="debug">{{tempTeam.destination}}</span>
+                </div>
 
-        <div class="language">
-            <strong>Main language for communication</strong>
-            <select ng-model="tempTeam.languageForCommunication"> 
+                <div class="language param">
+                    <strong>Main language for communication</strong>
+                    <select ng-model="tempTeam.languageForCommunication"> 
                     <option ="">Language...</option> 
                     <option>Afrikaans</option>
                     <option>Albanian</option>
@@ -436,50 +440,59 @@
                     <option>Zulu</option>
                 </select>
 
-            <span class="debug">{{tempTeam.languageForCommunication}}</span>
-        </div>
+                    <span class="debug">{{tempTeam.languageForCommunication}}</span>
+                </div>
 
-        <div class="departureDate">
-            <strong>Departure Date</strong>
-            <input type="text" id="departureDate" ng-model="tempTeam.departureDate">
-            <span class="debug">{{tempTeam.departureDate}}</span>
-        </div>
+                <div class="departureDate param">
+                    <strong>Departure Date</strong>
+                    <input type="text" id="departureDate" ng-model="tempTeam.departureDate">
+                    <span class="debug">{{tempTeam.departureDate}}</span>
+                </div>
 
-        <div class="returnDate">
-            <strong>Return Date</strong>
-            <input type="text" id="returnDate" ng-model="tempTeam.returnDate">
-            <span class="debug">{{tempTeam.returnDate}}</span>
-        </div>
+                <div class="returnDate param">
+                    <strong>Return Date</strong>
+                    <input type="text" id="returnDate" ng-model="tempTeam.returnDate">
+                    <span class="debug">{{tempTeam.returnDate}}</span>
+                </div>
 
-        <div class="descriptions">
-            <strong>Descriptions</strong>
-            <textarea rows="4" cols="50" ng-model="tempTeam.descriptions" placeholder="To descrip something about your group"></textarea>
-            <span class="debug">{{tempTeam.descriptions}}</span>
-        </div>
+                <div class="descriptions param">
+                    <strong>Descriptions</strong>
+                    <textarea rows="4" cols="50" ng-model="tempTeam.descriptions" placeholder="To descrip something about your group"></textarea>
+                    <span class="debug">{{tempTeam.descriptions}}</span>
+                </div>
 
-        <div class="member">
-            <strong>Member in the group</strong>
-            <input type="text" id="memberId" placeholder="Enter the member id in your group (if any)">
-            <button type="button" class="btn btn-primary" ng-click="setMember();"> Add member</button>
-            <span class="debug">{{tempTeam.members}}</span>
-        </div>
+                <div class="member param">
+                    <strong>Member in the group</strong>
+                    <input type="text" id="memberId" placeholder="Enter the member id in your group (if any)">
+                    <button type="button" class="btn btn-danger" ng-click="setMember();"> Add member</button>
+                    <span class="debug">{{tempTeam.members}}</span>
+                    <div class="panel">
+                        <span class=" member-added">Members added: </span>
+                        <span class="badge" ng-repeat="m in tempTeam.members">{{m}}</span>
+                    </div>
+                </div>
 
-        <div class="tags">
-            <strong>Tags</strong>
-            <input type="text" id="tags">
-            <button type="button" class="btn btn-primary" ng-click="setTag();"> Add tag</button>
-            <span class="debug">{{tempTeam.tags}}</span>
+                <div class="tags param">
+                    <strong>Tags</strong>
+                    <input type="text" id="tags">
+                    <button type="button" class="btn btn-danger" ng-click="setTag();"> Add tag</button>
+                    <span class="debug">{{tempTeam.tags}}</span>
 
-            <div class="creatGroupButton">
-                <button type="button" class="btn btn-primary" ng-click="createGroup();"> create group </button>
+                    <div class="creatGroupButton-container">
+                        <div class="creatGroupButton">
+                            <button type="button" class="btn btn-lg btn-danger" ng-click="createGroup();"> create group </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
-        <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.3/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
 
-        <script>
+    <script>
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyAlt_yl9mLcadDyhjtT2h4Ct9DDCxjGL4M",
@@ -491,11 +504,11 @@
       firebase.initializeApp(config);
     </script>
 
-        <!-- JavaScript of this page -->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- JavaScript of this page -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-        <script src="js/sharedScript.js"></script>
-        <script src="js/createGroup.js"></script>
+    <script src="js/sharedScript.js"></script>
+    <script src="js/createGroup.js"></script>
 </body>
 
 </html>
