@@ -17,6 +17,36 @@ angular.module("member", ["firebase"])
         $scope.user = null;
         $scope.teamsJoined = [];
         $scope.membersAll = [];
+        $scope.modiUser = null;
+
+        $scope.checkAuth = function(index) {
+            var user = firebase.auth().currentUser;
+            var modiUser = $scope.user;
+            var userNew = null;
+
+            for(var i = 0; i < $scope.mems.length; i++) {
+                console.log($scope.mems[i].uid + " vs " + user.uid);
+                if($scope.mems[i].uid == user.uid) {
+                    userNew = $scope.mems[i];
+                    $scope.modiUser = userNew;
+                }
+            }
+
+            var can = false;
+            if(modiUser.id == userNew.id) {
+                can = true;
+            } else {
+                alert("You are not authorized to modify other accounts!");
+                return;
+            }
+
+            if(can == true) {
+                $("#modifyDialog").dialog();
+
+                // fill in data from userNew
+                
+            }
+        };
         
         firebase.auth().onAuthStateChanged(function(user) {
             $scope.mems.$loaded()
