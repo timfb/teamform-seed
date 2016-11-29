@@ -1,7 +1,7 @@
 
 
 legend{
-	color: #1d00ff;
+	color: #00ff77;
 	font-family:Lucida Console;
 	font-size: 45;
 	font-style: bold;
@@ -105,8 +105,10 @@ ul li:nth-child(5n) a{
 
 body{
     background-image: url("http://blog.ecocompanion.com/wp-content/uploads/2015/10/shutterstock_204205822-1600x900.jpg");
-    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 label{
