@@ -210,7 +210,14 @@ app.controller("RegController",
 
                             // $scope.members.$add($scope.input);
                             // console.log($scope.members.length);
-                            $scope.members.$ref().child($scope.members.length).set($scope.input);
+                            $scope.members.$loaded().then(function() {
+                                console.log($scope.members);
+                                $scope.members.$ref().child($scope.members.length).set($scope.input).then(function() {
+                               console.log("added");
+                            }).catch(function(error) {
+                                console.log(error);
+                            });
+                            });
 
                         }, function(error) {
                             // An error happened.
