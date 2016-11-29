@@ -361,6 +361,7 @@ app.controller("createGroupCtrl",
                         }]
                     };
                     $scope.chatrooms.$ref().child($scope.chatrooms.length).set(obj);
+                    goToLoginPage();
                 });
             } else {
                 alert("Please enter the information again.");
