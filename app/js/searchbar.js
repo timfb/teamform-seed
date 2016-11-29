@@ -651,16 +651,12 @@ $(document).ready(function () {
     });
 
     //load the Json file to the html
-    $.getJSON("https://gist.githubusercontent.com/timfb/551d3ed641435fd15c25b99ea9647922/raw/ce3b3d8459491d38fafe69020bd3535bfd11d334/countrylist.json",
+    $.getJSON("https://gist.githubusercontent.com/timfb/c47c84627b05b67f224a87cad5e68e75/raw/6d92aa3e9ff83935477789db482fdadc36e57568/country_and_language.json",
         function (data) {
-            countrylist = data.country_list;
+            countrylist = data.country;
+            languagelist = data.language;
             for (var i = 0; i < countrylist.length; i++)
-                $("select[ng-model='constraint.m[1]'], select[ng-model='constraint.m[2]'], select[ng-model='constraint.t[0]']").append("<option value='" + i + "'>" + countrylist[i].name + " (" + countrylist[i].code + ")" + "</option>");
-        });
-    $.getJSON("https://gist.githubusercontent.com/timfb/0e802654c5b4bf6f8de1569554055f05/raw/116c838a8df916d72fed37c6a4123b2891f88eef/languagelist.json",
-        function (data) {
-            languagelist = data.languages;
-            languagelist = sortArray(languagelist, "English");
+                $("select[ng-model='constraint.m[1]'], select[ng-model='constraint.m[2]'], select[ng-model='constraint.t[0]']").append("<option value='" + i + "'>" + countrylist[i] + "</option>");
             for (var i = 0; i < languagelist.length; i++)
                 $("select[ng-model='constraint.m[3]'], select[ng-model='constraint.t[1]']").append("<option value='" + i + "'>" + languagelist[i] + "</option>");
         });
@@ -855,7 +851,7 @@ function hightlight(text, keywords) {
 
 //get country list item
 function getCountryListItem(index) {
-    return countrylist[index].name;
+    return countrylist[index];
 }
 
 //get language list item
