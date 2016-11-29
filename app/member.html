@@ -8,22 +8,23 @@
     <title>Member Page</title>
 </head>
 
-<script>
+<!-- <script>
     function goBack() {
         window.history.back();
     }
-</script>
+</script> -->
 
 <body ng-app="member" ng-controller="memCtrl">
 
-    <button id="btn_admin" onclick="goBack();" type="button" class="btn btn-lg btn-warning">Back</button></a>
+    <!-- <button id="btn_admin" onclick="goBack();" type="button" class="btn btn-lg btn-warning">Back</button></a> -->
 <body ng-app="member" ng-controller="memCtrl">
 
     <form>
+
         <div class="container">
             <!-- Portfolio Item Heading -->
             <div class="text-center">
-                <h1>Profile</h1>
+                <h2><strong>Profile</strong></h2>
             </div>
             <hr>
             <hr><br>
@@ -37,38 +38,41 @@
                 </div>
                 <div class="col-md-8">
                     <div class="bubble" class="img-responsive" style="margin-top:1px">
+                        <table>
                         <h2 style="margin-top:-10px">
                             <center>Your Profile</center>
                         </h2>
-                        <img src="{{user.profile_pic}}" width="170" height="220" class="picleft" class="img-responsive" / align=left>
+                      <img src="{{user.profile_pic}}" width="170" height="220" class="picleft" class="img-responsive" / align=left>
 
-                        <div>
-                            <h3>Last Name: &nbsp;<span>{{user.last_name}}</span></h3>
-                            <h3>Member ID: &nbsp;<span>{{user.id}}</span></h3>
-                            <h3>Gender: &nbsp;<span>{{user.gender}}</span></h3>
-                            <h3>Lives in: &nbsp; <span>{{user.from}}</span></h3>
-                            <h3>Date of Born: &nbsp;<span>{{user.birthday}}</span></h3>
-                            <h3>Email Address: &nbsp;<span>{{user.email}}</span></h3>
-                            <h3>Descriptions: &nbsp;<span>{{user.descriptions}}</span></h3>
-                            <h3>Available For Traveling?: &nbsp;<span>{{user.available_for_traveling}}</span></h3>
-                            <h3>Has been to: &nbsp;<span ng-repeat="to in user.has_been">{{to}}&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
-                            <h3>Languages: &nbsp;<span ng-repeat="language in user.language">{{language}}&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
-                            <h3>Wish List: &nbsp;<span ng-repeat="place in user.want_to_travel">{{place}}&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
-                            <a ng-click="checkAuth($index);" class="btn btn-lg btn-warning">Modify</a>
+                        <div >
+                              <tr><td><h3>Last Name: &nbsp;<span>{{user.last_name}}</span></td></h3></tr>
+                              <tr><td><h3>Member ID: &nbsp;<span>{{user.id}}</span></td></h3></tr>
+                              <tr><td><h3>Gender: &nbsp;<span>{{user.gender}}</span></td></h3></tr>
+                              <tr><td><h3>Lives in: &nbsp; <span>{{user.from}}</span></td></h3></tr>
+                              <tr><td><h3>Date of Born: &nbsp;<span>{{user.birthday}}</span></td></h3></tr>
+                              <tr><td><h3>Email Address: &nbsp;<span>{{user.email}}</span></td></h3></tr>
+                              <tr><td><h3>Descriptions: &nbsp;<span>{{user.descriptions}}</span></td></h3></tr>
+                              <tr><td><h3>Available For Traveling?: &nbsp;<span>{{user.available_for_traveling}}</span></td></h3></tr>
+                              <tr><td><h3>Has been to: &nbsp;<span ng-repeat="to in user.has_been">{{to}}&nbsp;&nbsp;&nbsp;&nbsp;</span></td></h3></tr>
+                              <tr><td><h3>Languages: &nbsp;<span ng-repeat="language in user.language">{{language}}&nbsp;&nbsp;&nbsp;&nbsp;</span></td></h3></tr>
+                              <tr><td><h3>Wish List: &nbsp;<span ng-repeat="place in user.want_to_travel">{{place}}&nbsp;&nbsp;&nbsp;&nbsp;</span></td></h3></tr>
+                              <br><tr><td><center><a ng-click="checkAuth($index);" class="btn btn-lg btn-warning">Modify</a></center></td></tr>
                         </div>
+                      </table>
                     </div>
                 </div>
                 <div class="col-md-2">
 
                 </div>
             </div>
+
             <!-- /.row -->
 
             <!-- Related Projects Row -->
             <div class="row" style="margin-top: 30px;">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h1 Style="color: white">Team Joined</h1>
+                        <h2 ><strong>Team Joined</strong></h2>
                     </div>
                     <hr>
                     <hr><br>
@@ -77,20 +81,22 @@
                         </div>
                         <div class="col-md-8">
                             <div class="bubble" class="img-responsive" style="margin-top:1px">
+                              <table>
                                 <h2 style="margin-top:-10px">
                                     <center>{{team.name}}</center>
                                 </h2>
                                 <div>
-                                    <h3>Departure Date: &nbsp;<span>{{team.departure_date}}</span></h3>
-                                    <h3>Descriptions: &nbsp;<span>{{team.descriptions}}</span></h3>
-                                    <h3>Destination: &nbsp;<span>{{team.destination}}</span></h3>
-                                    <h3>Estimated Budget/person: &nbsp; <span>{{team.estimated_budget_per_person}}</span></h3>
-                                    <h3>Language: &nbsp;<span>{{team.language_for_communication}}</span></h3>
-                                    <h3>Max Number of People: &nbsp;<span>{{team.max}}</span></h3>
-                                    <h3>Preference: &nbsp;<span>{{team.preference}}</span></h3>
-                                    <h3>Return Date: &nbsp;<span>{{team.returnDate}}</span></h3>
-                                    <h3>Members: &nbsp;<span ng-repeat="memberId in team.members"><a href="member.html?memberId={{memberId}}">{{membersAll[memberId].first_name}}, {{membersAll[memberId].last_name}}</a> &nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
+                                    <tr><td><h3>Departure Date: &nbsp;<span>{{team.departure_date}}</span></h3></tr></td>
+                                    <tr><td><h3>Descriptions: &nbsp;<span>{{team.descriptions}}</span></h3></tr></td>
+                                    <tr><td><h3>Destination: &nbsp;<span>{{team.destination}}</span></h3></tr></td>
+                                    <tr><td><h3>Estimated Budget/person: &nbsp; <span>{{team.estimated_budget_per_person}}</span></h3></tr></td>
+                                    <tr><td><h3>Language: &nbsp;<span>{{team.language_for_communication}}</span></h3></tr></td>
+                                    <tr><td><h3>Max Number of People: &nbsp;<span>{{team.max}}</span></h3></tr></td>
+                                    <tr><td><h3>Preference: &nbsp;<span>{{team.preference}}</span></h3></tr></td>
+                                    <tr><td><h3>Return Date: &nbsp;<span>{{team.returnDate}}</span></h3></tr></td>
+                                    <tr><td><h3>Members: &nbsp;<span ng-repeat="memberId in team.members"><a href="member.html?memberId={{memberId}}">{{membersAll[memberId].first_name}}, {{membersAll[memberId].last_name}}</a> &nbsp;&nbsp;&nbsp;&nbsp;</span></h3></tr></td>
                                 </div>
+                              </table>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -108,6 +114,7 @@
 
         </div>
     </form>
+
     <!-- /.container -->
 
     <div id="modifyDialog" title="Modification" style="display:none;">
