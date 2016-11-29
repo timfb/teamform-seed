@@ -116,6 +116,7 @@ p.description-style-indent, .indent{
 body{
     background-image: url("http://exchange.wysetc.org/wp-content/uploads/sites/11/2016/03/Backpacker-Australia.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #advancedSearchPanel{
