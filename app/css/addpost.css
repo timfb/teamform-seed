@@ -1,34 +1,4 @@
 
-/*.picRight {
-	float : right;
-	margin: 0 10px 20px 10px
-}*/
-
-/*table {
-    border-collapse: collapse;
-    width: 100%;
-	margin-bottom: 20px;
-}*/
-
-/*th{
-	text-align: left;
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 20;
-	padding: 5px;
-} 
-td {
-    text-align: left;
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 20;
-    padding: 5px;
-}*/
-
-/*tr:nth-child(even){background-color: #ffff99}*/
-/*
-th {
-    background-color: #3333ff;
-    color: white;
-}*/
 
 legend{
 	color: #1d00ff;
@@ -134,8 +104,9 @@ ul li:nth-child(5n) a{
 }
 
 body{
-    background-image: url("http://www.wallpapercombo.com/wp-content/uploads/2016/06/white-background-image-1.jpg");
+    background-image: url("http://blog.ecocompanion.com/wp-content/uploads/2015/10/shutterstock_204205822-1600x900.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 label{
