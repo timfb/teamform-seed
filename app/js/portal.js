@@ -7,7 +7,10 @@ $("#obj").width($(window).width());
 $("#obj").height($(window).height());
 }
 
-$("#search").click(function() {
+$( document ).ready(function() {
+    fixSize();
+
+    $("#search").click(function() {
     $("#obj").attr("data", "search.html");
    fixSize(); 
 });
@@ -45,3 +48,5 @@ $("#logout").click(function() {
 
     });
 });
+});
+

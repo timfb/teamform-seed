@@ -97,7 +97,7 @@ app.controller("LoginController",
 app.controller("RegController",
     function($scope, $firebaseArray) {
         $scope.emailTextReg = "";
-        $scope.gender = 'male';
+        $scope.gender = 'Male';
         $scope.avali = true;
         $scope.nation = 'chinese';
         $scope.members = $firebaseArray(dbRef);
@@ -184,7 +184,7 @@ app.controller("RegController",
                             console.log(bDate);
                             // construct JSON for Database
                             $scope.input = {
-                                available_for_traveling: $scope.avali,
+                                available_for_traveling: true,
                                 birthday: bDate,
                                 descriptions: "",
                                 email: email,
@@ -372,14 +372,18 @@ function popupLogin() {
                     $input = {
                         available_for_traveling: true,
                         birthday: response.birthday,
-                        descriptions: "",
+                        descriptions: "Hey! I'm using TravelBuddy!",
                         email: response.email,
                         first_name: response.first_name,
                         from: "",
                         gender: response.gender,
-                        id: user.uid,
+                        uid: user.uid,
+                        id: num,
                         last_name: response.last_name,
-                        profile_pic: response.picture.data.url
+                        profile_pic: response.picture.data.url,
+                        has_been: [],
+                        language: [],
+                        want_to_travel: []
                     }
 
                     // console.log($input);
@@ -575,7 +579,6 @@ firebase.auth().onAuthStateChanged(stateChange);
 */
 
 function previewMethod(input) {
-
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
