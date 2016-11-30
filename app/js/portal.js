@@ -16,7 +16,7 @@ $( document ).ready(function() {
 });
 
 $("#chat").click(function() {
-    $("#obj").attr("data", "Chatroom.html");
+    $("#obj").attr("data", "chatroom.html");
     fixSize();
 });
 
